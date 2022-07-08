@@ -1,0 +1,22 @@
+.profile {
+  width: 40px;
+  height: 40px;
+  margin-left: 0.5rem;
+}
+.delete_icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 2rem;
+}
+.mainContainer {
+  border: 2px solid;
+  margin: 2rem;
+  width: 75rem;
+}
+.row {
+  border: 2px solid;
+}
+th,
+td {
+  padding: 24px;
+}

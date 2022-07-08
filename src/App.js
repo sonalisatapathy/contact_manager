@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import ContactForm from "./Components/ContactForm";
+import ContactPage from "./Components/ContactPage";
+import Header from "./Components/Header";
+import { useEffect, useState } from "react";
 function App() {
+  const localStorageKey = "contact";
+  const [contactDetails, setContactDetails] = useState([]);
+  const contactFormHandler = (info) => {
+    setContactDetails([...contactDetails, info]);
+    // console.log([...contactDetails, info]);
+  };
+  useEffect(() => {
+    const retriveData = JSON.parse(localStorage.getItem(localStorageKey));
+    console.log(retriveData);
+    if (retriveData) {
+      setContactDetails(retriveData);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(contactDetails));
+  }, [contactDetails]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <ContactForm onContactFormHandler={contactFormHandler} />
+      <ContactPage contactDetails={contactDetails} />
+    </>
   );
 }
 
